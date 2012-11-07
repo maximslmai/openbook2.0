@@ -24,7 +24,3 @@ http://www.turtleland.net/openbook2.0 (login: admin/admin)
 `mysql -u openbook -p'0penb00k' openbook < /var/www/openbook2.0/protected/data/openbook.sql`
 * Import sample data (optional). You could use this command to import: 
 `mysql -u openbook -p'0penb00k' openbook < /var/www/openbook2.0/protected/tests/sample_test_data.sql`
-
-## Developers:
-* Maxim Mai <maxim.sl.mai@gmail.com>
-* Eric Zhang <zhangtao727@gmail.com>
