@@ -8,7 +8,7 @@ Openbook2.0 is a very interactive and responsive invoice and inventory managemen
 * LAMP: http://www.howtoforge.com/ubuntu_lamp_for_newbies
 
 ## Demo: 
-http://www.turtleland.net/openbook2.0
+http://www.turtleland.net/openbook2.0 (login: admin/admin)
 
 ## Installation Instruction
 * Download the source from github (https://github.com/maximmai/openbook2.0/archive/master.zip)
