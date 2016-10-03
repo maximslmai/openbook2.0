@@ -91,6 +91,38 @@
 	
 	
 	<hr/>
+	<?php 
+	
+	for($i=0;$i<count($entries); $i++){
+	?>
+		<div class="row">
+		
+		<?php
+		$entry = $entries[$i];
+		echo CHtml::hiddenField("Entry".$i."_id", $entry->id);
+		echo CHtml::hiddenField("Entry".$i."[inventory]", -1);
+		echo "Inventory Name: ";
+		$this->widget('zii.widgets.jui.CJuiAutoComplete', array(
+				'name'=>'Entry'.$i."_name",
+				'source'=>$this->createUrl('inventory/autocomplete'),
+				// additional javascript options for the autocomplete plugin
+				'options'=>array(
+						'minLength'=>'2',
+				),
+		));
+		echo "Price: " .  CHtml::textField("Entry".$i."[price]", $entry->price, array("size"=>5));
+		echo "Quantity: " .  CHtml::textField("Entry".$i."[quantity]", $entry->quantity, array("size"=>5));
+		echo "Amount: " .  CHtml::textField("Entry".$i."[amount]", $entry->amount, array("size"=>5));
+		?>
+		
+		</div>
+		<?php
+	}
+	?>
+	
+	<?php 
+	echo CHtml::hiddenField("entryCount",count($entries));
+	?>
 	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
