@@ -68,52 +68,14 @@ class InvoiceController extends Controller
 		$model=new Invoice;
 		$model->date = date("Y-m-d");
 		$entries = array();
-		for($i=0;$i<10;$i++){ $entries[] = new Entry; }
-		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Invoice']))
 		{
 			$model->attributes=$_POST['Invoice'];
-			$entries = array();
-			if(isset($_POST['entryCount'])){
-				$count = intval($_POST['entryCount']);
-				for($i=0;$i<$count;$i++){
-					$entry = new Entry;
-					$inventory_info = $_POST["Entry$i"."_name"];
-					$inventory_info_arr = explode(":",$inventory_info);
-					$inventory_id = intval($inventory_info_arr[0]);
-					$inventory = Inventory::model()->findByPk($inventory_id);
-					$entry->attributes=$_POST["Entry$i"];
-					$entry->inventory = $inventory_id;
-					$entry->item = $inventory->name . " - " . $inventory->model;
-					if($entry->amount != "" && $inventory_id != -1)
-						$entries[] = $entry;
-				}
-			}
-			if(count($entries) > 0){
-				if ($model->save()){
-					foreach($entries as $entry){
-						$entry->invoice = $model->id;
-						$entry->save();
-						$inventory = Inventory::model()->findByPk($entry->inventory);
-
-						$inventory->quantity = $inventory->quantity - $entry->quantity;
-						$inventory->save();
-					}
-					// also need to update the inventory table to reflect the 
-					// changes we made in our invoice instance.
-					
-					
-					
-					// if everything went well, we will return the page to the user.
-					$this->redirect(array('view','id'=>$model->id));
-				}
-			}else{
-				for($i=0;$i<10;$i++){
-					$entries[] = new Entry;
-				}
-			}
+		if($model->save()){
+				$this->redirect(array('view','id'=>$model->id));
+}
 		}
 
 		$this->render('create',array(
