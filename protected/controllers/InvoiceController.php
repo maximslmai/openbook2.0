@@ -86,7 +86,7 @@ class InvoiceController extends Controller
 					$inventory = Inventory::model()->findByPk($inventory_id);
 					$entry->attributes=$_POST["Entry$i"];
 					$entry->inventory = $inventory_id;
-					//$entry->item = $inventory->name . " - " . $inventory->model;
+					$entry->item = "";//$inventory->name . " - " . $inventory->model;
 					if($entry->amount != "" && $inventory_id != -1)
 						$entries[] = $entry;
 				}
